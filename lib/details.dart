@@ -9,7 +9,7 @@ class HustleInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var top =0.0;
+    var top = 0.0;
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
       body: CustomScrollView(
@@ -28,30 +28,30 @@ class HustleInfo extends StatelessWidget {
                           color: Color(0xFFFF773D),
                           fontWeight: FontWeight.w700)))
             ],
+
             pinned: true,
             backgroundColor: const Color(0xFFF7F7F7),
             expandedHeight: size.height * 0.15,
-            
-            flexibleSpace: LayoutBuilder(
-              builder: (context,constraints) {
-                top=constraints.biggest.height;
-                return  FlexibleSpaceBar(
-                  
-                  titlePadding:const EdgeInsets.only(left: 20, bottom: 15),
-                  title: AnimatedOpacity(
-                    duration:const Duration(milliseconds: 200),
-                    opacity: top>=size.height*0.16?1.0:0.0,
-                    child:const Text(
-                      'Hustle Information',
-                      style: TextStyle(
-                          color: Color(0xFF322644),
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18),
-                    ),
+            elevation: 0,
+            flexibleSpace: LayoutBuilder(builder: (context, constraints) {
+              top = constraints.biggest.height;
+              return FlexibleSpaceBar(
+                titlePadding: top >= size.height * 0.16
+                    ? const EdgeInsets.only(left: 20, bottom: 15)
+                    : const EdgeInsets.only(left: 120, bottom: 15),
+                title: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.decelerate,
+                  child: Text(
+                    'Hustle Information',
+                    style: TextStyle(
+                        color: const Color(0xFF322644),
+                        fontWeight: FontWeight.w700,
+                        fontSize: top >= size.height * 0.16 ? 18 : 14),
                   ),
-                );
-              }
-            ),
+                ),
+              );
+            }),
           ),
           SliverToBoxAdapter(
             child: Padding(
@@ -392,7 +392,7 @@ class HustleInfo extends StatelessWidget {
                   SizedBox(
                     height: size.height * 0.025,
                   ),
-                   Row(
+                  Row(
                     children: [
                       Image.asset(
                         "assets/images/fb.png",
@@ -436,7 +436,6 @@ class HustleInfo extends StatelessWidget {
                   SizedBox(
                     height: size.height * 0.025,
                   ),
-                  
                 ],
               ),
             ),
